@@ -16,7 +16,7 @@ class StudentController extends AbstractController
     /**
      * @Route("/student/new", name="student_new", methods={"POST", "GET"})
      */
-    public function newAction(Request $request)
+    public function new(Request $request)
     {
         // create a task and give it some dummy data for this example
         $student = new Student();
@@ -32,7 +32,7 @@ class StudentController extends AbstractController
 
         // if SUBMITTED & VALID - go ahead and create new object
         if ($form->isSubmitted() && $form->isValid()) {
-            return $this->createAction($student);
+            return $this->create($student);
         }
 
         // render the form for the user
@@ -59,7 +59,7 @@ class StudentController extends AbstractController
         return $this->render($template, $args);
     }
 
-    public function createAction(Student $student)
+    public function create(Student $student)
     {
         // entity manager
         $em = $this->getDoctrine()->getManager();
@@ -96,7 +96,7 @@ class StudentController extends AbstractController
     /**
      * @Route("/student/delete/{id}")
      */
-    public function deleteAction(Student $student)
+    public function delete(Student $student)
     {
         // store ID so we can still refer to it after object/row deleted
         $id = $student->getId();
@@ -115,7 +115,7 @@ class StudentController extends AbstractController
     /**
      * @Route("/student/update/{id}/{newFirstName}/{newSurname}")
      */
-    public function updateAction(Student $student, $newFirstName, $newSurname)
+    public function update(Student $student, $newFirstName, $newSurname)
     {
         $em = $this->getDoctrine()->getManager();
 
